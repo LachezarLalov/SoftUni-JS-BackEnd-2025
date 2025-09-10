@@ -1,0 +1,13 @@
+{
+     "name": "c-web-server",
+     "version": "1.0.0",
+     "description": "",
+     "license": "ISC",
+     "author": "LLV",
+     "type": "module",
+     "main": "index.js",
+     "scripts": {
+          "start": "node index.js",
+          "test": "node test"
+     }
+}
