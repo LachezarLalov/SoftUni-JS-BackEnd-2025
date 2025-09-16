@@ -7,5 +7,5 @@
 -    [x] Add create breed page
 -    [x] Add create cat page
 -    [x] Render view generic function
--    [ ] Render dynamic cats from database
+-    [x] Render dynamic cats from database
 -    [ ] Add add cats from add-cats page
