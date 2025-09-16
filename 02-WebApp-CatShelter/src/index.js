@@ -1,14 +1,17 @@
 import http from 'http';
+import fs from 'fs/promises';
 
-import homeHtml from './home.html.js';
-import css from './site.css.js';
-
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
 	if (req.url === '/') {
-		res.writeHead(200, { 'content-type': 'text/html' });
+		const homeHtml = await fs.readFile('./src/views/index.html', {
+			encoding: 'utf-8',
+		});
 
+		res.writeHead(200, { 'content-type': 'text/html' });
 		res.write(homeHtml);
 	} else if (req.url === '/styles/site.css') {
+		const css = await fs.readFile('./src/styles/site.css');
+
 		res.writeHead(200, { 'content-type': 'text/css' });
 		res.write(css);
 	}
