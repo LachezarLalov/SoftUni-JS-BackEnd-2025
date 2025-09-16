@@ -35,21 +35,22 @@ server.listen(5000);
 
 console.log('Server running on http://localhost:5000...');
 
+async function renderView(path) {
+	return fs.readFile(path, { encoding: 'utf-8' });
+}
+
 async function homeView() {
-	const html = await fs.readFile('./src/views/index.html', {
-		encoding: 'utf-8',
-	});
+	const html = await renderView('./src/views/index.html');
+
 	return html;
 }
 async function addBreedView() {
-	const html = await fs.readFile('./src/views/addBreed.html', {
-		encoding: 'utf-8',
-	});
+	const html = await renderView('./src/views/addBreed.html');
+
 	return html;
 }
 async function addCatView() {
-	const html = await fs.readFile('./src/views/addCat.html', {
-		encoding: 'utf-8',
-	});
+	const html = await renderView('./src/views/addCat.html');
+
 	return html;
 }
