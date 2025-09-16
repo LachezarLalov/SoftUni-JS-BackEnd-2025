@@ -1,7 +1,8 @@
 import http from 'http';
 import fs from 'fs/promises';
 
-import cats from './cats.js';
+import { getCats, getBreeds, addCat } from './data.js';
+
 // console.log(cats.map((cat) => cat.name));
 const server = http.createServer(async (req, res) => {
 	let html;
@@ -15,12 +16,14 @@ const server = http.createServer(async (req, res) => {
 			data += chunk.toString();
 		});
 
-		req.on('end', () => {
+		req.on('end', async () => {
 			const searchParams = new URLSearchParams(data);
+			const cats = await getCats();
 
 			const newCat = Object.fromEntries(searchParams.entries());
 			newCat.id = cats.length + 1;
-			cats.push(newCat);
+
+			addCat(newCat);
 
 			res.writeHead(302, { location: '/' });
 			res.end();
@@ -67,7 +70,7 @@ function catTemplate(cat) {
 			src="${cat.imageUrl}"
 			alt="${cat.name}"
 		/>
-		<h3></h3>
+		<h3>${cat.name}</h3>
 		<p><span>Breed: </span>${cat.breed}</p>
 		<p>
 			<span>Description: </span>${cat.description}
@@ -90,6 +93,7 @@ function readFile(path) {
 
 async function homeView() {
 	const html = await readFile('./src/views/index.html');
+	const cats = await getCats();
 
 	return cats.length > 0
 		? html.replaceAll(

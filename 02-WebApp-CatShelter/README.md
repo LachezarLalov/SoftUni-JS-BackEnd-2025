@@ -11,4 +11,5 @@
 -    [x] Add add-cats from add-cats page
 -    [x] Check if there are cats
 -    [x] Redirect to home page
--    [ ] Persitent data in cats database
+-    [x] Persitent added cats in database
+-    [ ] Add dynamic breeds
