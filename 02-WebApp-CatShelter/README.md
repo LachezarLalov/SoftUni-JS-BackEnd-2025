@@ -10,5 +10,5 @@
 -    [x] Render dynamic cats from database
 -    [x] Add add-cats from add-cats page
 -    [x] Check if there are cats
--    [ ] Redirect to home page
+-    [x] Redirect to home page
 -    [ ] Persitent data in cats database

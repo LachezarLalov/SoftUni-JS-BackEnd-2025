@@ -21,8 +21,12 @@ const server = http.createServer(async (req, res) => {
 			const newCat = Object.fromEntries(searchParams.entries());
 			newCat.id = cats.length + 1;
 			cats.push(newCat);
-			//TODO redirect to home page
+
+			res.writeHead(302, { location: '/' });
+			res.end();
 		});
+
+		return;
 	}
 
 	switch (req.url) {
