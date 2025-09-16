@@ -2,9 +2,29 @@ import http from 'http';
 import fs from 'fs/promises';
 
 import cats from './cats.js';
-
+// console.log(cats.map((cat) => cat.name));
 const server = http.createServer(async (req, res) => {
 	let html;
+
+	if (req.method === 'POST') {
+		console.log('POST HAS BEEN MADE');
+
+		let data = '';
+
+		req.on('data', (chunk) => {
+			data += chunk.toString();
+		});
+
+		req.on('end', () => {
+			const searchParams = new URLSearchParams(data);
+
+			const newCat = Object.fromEntries(searchParams.entries());
+			newCat.id = cats.length + 1;
+			cats.push(newCat);
+
+			//TODO redirect to home page
+		});
+	}
 
 	switch (req.url) {
 		case '/':
@@ -70,7 +90,7 @@ async function homeView() {
 
 	const catsHtml = cats.map((cat) => catTemplate(cat)).join('\n');
 
-	const result = html.replace('{{cats}}', catsHtml);
+	const result = html.replaceAll('{{cats}}', catsHtml);
 
 	return result;
 }

@@ -8,4 +8,5 @@
 -    [x] Add create cat page
 -    [x] Render view generic function
 -    [x] Render dynamic cats from database
--    [ ] Add add cats from add-cats page
+-    [x] Add add-cats from add-cats page
+-    [ ] Redirect to home page
