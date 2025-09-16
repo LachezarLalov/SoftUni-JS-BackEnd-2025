@@ -1,9 +1,19 @@
 import http from 'http';
 
-const server = http.createServer((req, res) => {
-  res.write('Hello World! \nThis is running server... ');
+import homeHtml from './home.html.js';
+import css from './site.css.js';
 
-  res.end();
+const server = http.createServer((req, res) => {
+	if (req.url === '/') {
+		res.writeHead(200, { 'content-type': 'text/html' });
+
+		res.write(homeHtml);
+	} else if (req.url === '/styles/site.css') {
+		res.writeHead(200, { 'content-type': 'text/css' });
+		res.write(css);
+	}
+
+	res.end();
 });
 
 server.listen(5000);
