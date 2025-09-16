@@ -21,7 +21,6 @@ const server = http.createServer(async (req, res) => {
 			const newCat = Object.fromEntries(searchParams.entries());
 			newCat.id = cats.length + 1;
 			cats.push(newCat);
-
 			//TODO redirect to home page
 		});
 	}
@@ -88,11 +87,15 @@ function readFile(path) {
 async function homeView() {
 	const html = await readFile('./src/views/index.html');
 
-	const catsHtml = cats.map((cat) => catTemplate(cat)).join('\n');
-
-	const result = html.replaceAll('{{cats}}', catsHtml);
-
-	return result;
+	return cats.length > 0
+		? html.replaceAll(
+				'{{cats}}',
+				cats.map((cat) => catTemplate(cat)).join('\n')
+		  )
+		: html.replaceAll(
+				'{{cats}}',
+				`<H2>THERE ARE NO CATS...\nWe are sorry!</H2>`
+		  );
 }
 async function addBreedView() {
 	const html = await readFile('./src/views/addBreed.html');
