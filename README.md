@@ -1,6 +1,6 @@
 # JS Back-end course
 
-### 01. Basic Node.js consepts
+### 01. Basic Node.js concepts
 
 - Web server
 - Streams
