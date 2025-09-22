@@ -1,0 +1,14 @@
+{
+  "name": "02-webapp-catshelter",
+  "version": "1.0.0",
+  "description": "Basic web application using HTML, CSS and Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
